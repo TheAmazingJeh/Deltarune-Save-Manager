@@ -1,13 +1,14 @@
 # Deltarune Save Manager
 
-This is a program that can organise and backup saves for you using python!
+This is a program that can organize and backup saves for you using python!
+
+The only versions that are now being updated are `Deltarune Save Manager.exe` and `main-gui.pyw`
 
 ## Installation
 
-Download and run `main.py` to start the program
+Download all files and run `Deltarune Save Manager.exe` to start the program.
 
-A `.exe` may be available in the future for ease of use.
-
+It is still possible to run the `.pyw` version as well if you have python and the relevant modules installed on your computer.
 
 ## Credits
 
