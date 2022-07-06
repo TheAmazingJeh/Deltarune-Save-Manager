@@ -14,7 +14,7 @@ It is still possible to run the `.pyw` version as well if you have python and th
 
 Jevil save file by u/coaxials - [Here](https://www.reddit.com/r/Deltarune/comments/9thldb/can_someone_provide_a_saved_game_before_the_jevil/) 
 
-Spamton save files by u/HylianAngel - [Here](https://www.reddit.com/r/Deltarune/comments/ps0jfz/does_anybody_have_an_spamton_neo_save_file_to/)
+All other save files by u/HylianAngel - [Here](https://www.reddit.com/r/Deltarune/comments/q6eosg/my_deltarune_chapter_12_save_files/)
 
 ## Contributing
 Pull requests are welcome.
