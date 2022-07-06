@@ -137,8 +137,6 @@ class GameTypeSelect(tkinter.simpledialog.Dialog):
         self.file_label_truncated = Entry(master, textvariable=self.file_string_truncated, width=40)
         self.file_label_truncated.grid(row=3,column=0, columnspan=2,sticky=W, pady=5)
 
-        Label(master,text="You will need to re-launch the app for\nchanges to take effect.", justify=LEFT, anchor="w",font=("Arial",8)).grid(row=4,columnspan=2, sticky=W)
-
         self.r1.invoke()
         return
     
@@ -170,6 +168,6 @@ class Settings(tkinter.simpledialog.Dialog):
 if __name__ == "__main__":
     w = Tk()
     w.title("Test Window")
-    d = Settings(w)
+    d = GameTypeSelect(w)
     print(d.result)
 
