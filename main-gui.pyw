@@ -85,7 +85,7 @@ def backup_save(chapter=None,slot=None):  # Backup save function
     iniData = readini(location_data["data"]+"\\dr.ini",makeinikey(d[1],d[2]))
     writeini(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save.ini", iniData, "DATA")
 
-def write_save():  # Write save function
+def write_save():         # Write save function
     d = WriteSave(w)
     d = d.result
     if d == None:
@@ -156,7 +156,7 @@ if os.path.exists(loc+"\\DELTARUNE.ico"):
     
 w.configure()
 setwindowmiddle(w,250,180)
-#w.resizable(False, False)
+w.resizable(False, False)
 
 launchGameText = StringVar()
 launchGameText.set(update_game_button())
