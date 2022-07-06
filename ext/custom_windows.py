@@ -155,7 +155,8 @@ class Settings(tkinter.simpledialog.Dialog):
         return
     def body(self, master):
         self.minsize(width=250, height=10)
-        Button(master, text="Reset Game Launch Type", command=self.reset_game_launch).grid(row=0, column=0, sticky=W)
+        Button(master, text="Reset Game Launch Type", command=self.reset_game_launch).grid(row=0)
+        Button(master, text="Open Deltarune Saves Folder", command=lambda: os.system(f"explorer.exe {location_data['data']}")).grid(row=1)
         return
     def buttonbox(self):
         box = Frame(self)
@@ -168,6 +169,6 @@ class Settings(tkinter.simpledialog.Dialog):
 if __name__ == "__main__":
     w = Tk()
     w.title("Test Window")
-    d = GameTypeSelect(w)
+    d = Settings(w)
     print(d.result)
 
