@@ -7,7 +7,7 @@ from tkinter.messagebox import askyesno, showwarning, showerror
 from configparser import ConfigParser
 
 from ext.custom_windows import BackupSave, GameTypeSelect, WriteSave, Settings    # Import tk windows
-from ext.custom_windows import loc, vars, location_data # Import Variables
+from ext.custom_windows import loc, vars, location_data, rename_save # Import Variables & Functions
 
 if getattr(sys, 'frozen', False): 
     exec(f"import pyi_splash")
@@ -73,10 +73,7 @@ def backup_save(chapter=None,slot=None):  # Backup save function
             backup_save()
     else:
         new = askstring(" ",f"What do you want to name the backup?")
-        if new == "":
-            new = "Undefined"
-        if os.path.exists(loc+f"\\Saves\\CH{str(chapter)}\\"+new):
-            new += "-new"
+        new = rename_save(new,chapter)
         d = [new,chapter,slot]
     
     if not os.path.exists(loc+f'\\Saves\\CH{d[1]}\\{d[0]}'):

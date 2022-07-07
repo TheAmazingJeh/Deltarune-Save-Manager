@@ -3,6 +3,7 @@ from tkinter import *
 import tkinter.simpledialog 
 from tkinter.messagebox import showinfo, showwarning
 from tkinter.filedialog import askopenfilename
+from datetime import datetime
 
 if getattr(sys, 'frozen', False):
     exec(f"import pyi_splash as splash")
@@ -15,6 +16,15 @@ with open(loc+'\\data.json') as json_file:
     vars = json.load(json_file)
 
 BACKSLASH = "\\"
+
+def rename_save(save_name,chapter):
+    if save_name == "": save_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    if os.path.exists(loc+f"\\Saves\\CH{str(chapter)}\\"+save_name):
+        if save_name[-2].isnumeric(): save_name = f"{save_name[:-2]}{int(save_name[-2])+1})"
+        else: save_name = f"{save_name} (1)"
+    else: return save_name
+    print(save_name)
+    return rename_save(save_name,chapter)
 
 location_data = {
     "exe":"C:\\Program Files (x86)\\Steam\\steamapps\\common\\DELTARUNEdemo",
@@ -42,21 +52,17 @@ class BackupSave(tkinter.simpledialog.Dialog):
         return
 
     def apply(self):
-        second = int(self.e2.get())
-        second = 1 if second == 0 else second
-        second = vars['MAXCHAPTER'] if second >= vars['MAXCHAPTER'] else second
+        chapterNum = int(self.e2.get())
+        chapterNum = 1 if chapterNum == 0 else chapterNum
+        chapterNum = vars['MAXCHAPTER'] if chapterNum >= vars['MAXCHAPTER'] else chapterNum
 
-        first = self.chapterSelect.get()
-        if first == "":
-            first = "Undefined"
-        if os.path.exists(loc+f"\\Saves\\CH{str(second)}\\"+first):
-            first += "-new"
-
-        third = int(self.e3.get())
-        third = 1 if third == 0 else third                              # Fix silly user input 0
-        third = vars['MAXSLOT'] if third >= vars['MAXSLOT'] else third
+        slotNum = int(self.e3.get())
+        slotNum = 1 if slotNum == 0 else slotNum                              # Fix silly user input 0
+        slotNum = vars['MAXSLOT'] if slotNum >= vars['MAXSLOT'] else slotNum
+        saveName = self.chapterSelect.get()
+        saveName = rename_save(saveName,slotNum)
         # Returns the new name (always valid), the chapter and the slot
-        self.result = [first, second, third]
+        self.result = [saveName, chapterNum, slotNum]
 
 class WriteSave(tkinter.simpledialog.Dialog):
     def update_saves(self, chapter):
@@ -169,6 +175,6 @@ class Settings(tkinter.simpledialog.Dialog):
 if __name__ == "__main__":
     w = Tk()
     w.title("Test Window")
-    d = Settings(w)
+    d = BackupSave(w)
     print(d.result)
 
