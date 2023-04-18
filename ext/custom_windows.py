@@ -117,6 +117,9 @@ class WriteSave(tkinter.simpledialog.Dialog):
         self.result = [self.GetSelectedSave(), writeChapter, writeSlot]
         return
 
+class EditSave(tkinter.simpledialog.Dialog):
+    pass
+
 class GameTypeSelect(tkinter.simpledialog.Dialog):
     def sel(self):
         match self.radioVar.get():

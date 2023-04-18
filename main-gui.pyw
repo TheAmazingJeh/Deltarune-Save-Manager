@@ -5,7 +5,7 @@ from tkinter.simpledialog import askinteger, askstring
 from tkinter.messagebox import askyesno, showwarning, showerror
 
 from configparser import ConfigParser
-
+from ext.custom_windows import EditSave
 from ext.custom_windows import BackupSave, GameTypeSelect, WriteSave, Settings    # Import tk windows
 from ext.custom_windows import loc, vars, location_data, rename_save # Import Variables & Functions
 
@@ -110,6 +110,13 @@ def write_save():         # Write save function
     visibleSlot = int(d[2])+1
     print(f"Save '{d[0]}' written to chapter {d[1]} slot {visibleSlot}\n",location_data["data"])
 
+def edit_save():
+    d = EditSave(w)
+    d = d.result
+    if d == None:
+        return
+    
+
 def get_game_type(w):     # Gets the game launch type from the user
     global launchGameText
     d = GameTypeSelect(w)
@@ -157,13 +164,14 @@ w.resizable(False, False)
 
 launchGameText = StringVar()
 launchGameText.set(update_game_button())
-Button(w, text="Backup Saves", command=backup_save).pack(padx=5, pady=5)
-Button(w, text="Load Save", command=write_save).pack(padx=5, pady=5)
+Button(w, text="Backup Saves", command=backup_save).grid(row=0, column=0,padx=5, pady=5, sticky=E)
+Button(w, text="Load Save", command=write_save).grid(row=1, column=0,padx=5, pady=5, sticky=E)
+Button(w, text="Edit Save", command=edit_save).grid(row=2, column=0,padx=5, pady=5, sticky=E)
 
-Button(w, textvariable=launchGameText, command=open_game).pack(pady=5)
-Button(w, text="Settings", command=settings).pack(padx=5, pady=5)
+Button(w, textvariable=launchGameText, command=open_game).grid(row=0, column=1,columnspan=2,padx=5, pady=5, sticky=W)
+Button(w, text="Settings", command=settings).grid(row=1, column=1,columnspan=2,padx=5, pady=5, sticky=W)
 
-Button(w, text="Quit", command=sys.exit).pack(padx=5, pady=5)
+Button(w, text="Quit", command=sys.exit).grid(row=2, column=1,columnspan=2,padx=5, pady=5, sticky=W)
 
 
 
