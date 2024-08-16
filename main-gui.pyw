@@ -7,7 +7,7 @@ from tkinter.messagebox import askyesno, showwarning, showerror
 from configparser import ConfigParser
 
 from ext.custom_windows import BackupSave, GameTypeSelect, WriteSave, Settings    # Import tk windows
-from ext.custom_windows import loc, vars, location_data, rename_save # Import Variables & Functions
+from ext.custom_windows import loc, vars, rename_save # Import Variables & Functions
 
 if getattr(sys, 'frozen', False): 
     exec(f"import pyi_splash")
@@ -68,7 +68,7 @@ def backup_save(chapter=None,slot=None):  # Backup save function
         d = d.result
         d[2] = d[2]-1 # Fix for slot (List index starts at 0)
 
-        if not os.path.exists(location_data["data"]+f"\\filech{d[1]}_{d[2]}"):
+        if not os.path.exists(vars["data"]+f"\\filech{d[1]}_{d[2]}"):
             showerror("Error",f"Save does not exist!\n\nChapter {d[1]} Slot {d[2]+1}")
             backup_save()
     else:
@@ -78,8 +78,8 @@ def backup_save(chapter=None,slot=None):  # Backup save function
     
     if not os.path.exists(loc+f'\\Saves\\CH{d[1]}\\{d[0]}'):
         os.makedirs(loc+f'\\Saves\\CH{d[1]}\\{d[0]}')
-    save_file(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save",open_file(location_data["data"]+f"\\filech{d[1]}_{d[2]}"))
-    iniData = readini(location_data["data"]+"\\dr.ini",makeinikey(d[1],d[2]))
+    save_file(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save",open_file(vars["data"]+f"\\filech{d[1]}_{d[2]}"))
+    iniData = readini(vars["data"]+"\\dr.ini",makeinikey(d[1],d[2]))
     writeini(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save.ini", iniData, "DATA")
 
 def write_save():         # Write save function
@@ -89,26 +89,26 @@ def write_save():         # Write save function
         return
     d[2] = d[2]-1 # Fix for slot (List index starts at 0)
 
-    if os.path.exists(location_data["data"]+f'\\filech{d[1]}_{d[2]}'):
+    if os.path.exists(vars["data"]+f'\\filech{d[1]}_{d[2]}'):
         doBackup = askyesno("Warning","File already exists!\nDo you want to back up existing save? (y/n)")
         match doBackup:
             case True: backup_save(chapter=d[1],slot=d[2])
             case False: pass
     
     writeini(
-        location_data["data"]+"\\dr.ini", 
+        vars["data"]+"\\dr.ini", 
         readini(
             loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save.ini",
             "DATA"
             ), 
         makeinikey(d[1],d[2]), 
-        existing= location_data["data"]+"\\dr.ini")
+        existing= vars["data"]+"\\dr.ini")
 
-    try_to_delete(location_data["data"]+f'\\filech{d[1]}_{d[2]}')
+    try_to_delete(vars["data"]+f'\\filech{d[1]}_{d[2]}')
 
-    save_file(location_data["data"] + f"\\filech{d[1]}_{d[2]}",open_file(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save"))
+    save_file(vars["data"] + f"\\filech{d[1]}_{d[2]}",open_file(loc+f"\\Saves\\CH{d[1]}\\{d[0]}\\save"))
     visibleSlot = int(d[2])+1
-    print(f"Save '{d[0]}' written to chapter {d[1]} slot {visibleSlot}\n",location_data["data"])
+    print(f"Save '{d[0]}' written to chapter {d[1]} slot {visibleSlot}\n",vars["data"])
 
 def get_game_type(w):     # Gets the game launch type from the user
     global launchGameText
