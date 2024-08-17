@@ -1,0 +1,17 @@
+{
+    "data": "C:\\Users\\joehb\\AppData\\Local\\DELTARUNE",
+    "savesFolder": "C:\\Users\\joehb\\Documents\\Coding\\Personal-Python\\Games\\Toby Fox Saves Manager\\Deltarune-Save-Manager\\Saves",
+    "savesFolderCONST": "C:\\Users\\joehb\\Documents\\Coding\\Personal-Python\\Games\\Toby Fox Saves Manager\\Deltarune-Save-Manager\\Saves",
+    "exe": null,
+    "loc": "C:\\Users\\joehb\\Documents\\Coding\\Personal-Python\\Games\\Toby Fox Saves Manager\\Deltarune-Save-Manager",
+    "colours": {
+        "text": null,
+        "background": null,
+        "listboxSelect": "steel blue"
+    },
+    "GAMETYPE": [
+        "Steam",
+        "start \"\" steam://rungameid/1690940"
+    ],
+    "hideAppdata": false
+}
